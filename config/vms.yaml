@@ -1,0 +1,11 @@
+---
+vms:
+- name: master
+  hostname: master.fritz.box
+  box: centos/7
+  roles:
+  - pe-puppet-master
+- name: agent
+  box: centos/7
+  roles:
+  - pe-puppet-agent

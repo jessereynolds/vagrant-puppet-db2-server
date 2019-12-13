@@ -1,0 +1,48 @@
+---
+roles:
+  pe-puppet-master:
+    private_networks:
+      - {ip: '0.0.0.0', auto_network: true}
+    providers:
+      - type: virtualbox
+        linked_clone: true
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 4048]
+    provisioners:
+      #- {type: hosts, sync_hosts: true, hosts: ['@vagrant_ssh', ['@vagrant_hostnames', 'master.fritz.box'],], }
+      - {type: hosts, sync_hosts: true}
+      - {type: pe_bootstrap, role: !ruby/sym master}
+    synced_folders:
+      - host_path: '.'
+        guest_path: '/vagrant'
+        type: sshfs
+      - host_path: '../puppet-control-repo'
+        guest_path: '/puppet-control-repo'
+        type: sshfs
+      - host_path: '../puppet-modules'
+        guest_path: '/puppet-modules'
+        type: sshfs
+  pe-puppet-agent:
+    private_networks:
+      - {ip: '0.0.0.0', auto_network: true}
+    providers:
+      - type: virtualbox
+        linked_clone: true
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 1024]
+    provisioners:
+      - {type: hosts, sync_hosts: true}
+      - {type: pe_agent, master: master.fritz.box}
+    synced_folders:
+      - host_path: '.'
+        guest_path: '/vagrant'
+        type: sshfs
+      - host_path: '../media'
+        guest_path: '/media'
+        type: sshfs
+      - host_path: '../puppet-control-repo'
+        guest_path: '/puppet-control-repo'
+        type: sshfs
+      - host_path: '../puppet-modules'
+        guest_path: '/puppet-modules'
+        type: sshfs
