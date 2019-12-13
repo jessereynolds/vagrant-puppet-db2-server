@@ -8,7 +8,7 @@ Creates a Puppet Enterprise server vm and an Agent vm that receives DB2 Server m
 - Oscar vagrant plugin
 - SSHFS vagrant plugin
 - VirtualBox
-- db2-puppet-control-repo
+- [db2-puppet-control-repo](https://github.com/jessereynolds/db2-puppet-control-repo)
 
 ## Setup
 
@@ -27,7 +27,7 @@ This Vagrant environment uses the SSHFS (SSH Filesystem) Vagrant plugin to mount
         type: sshfs
 ```
 
-You will need to have the db2-puppet-control-repo checked out into the parent directory of this Vagrant env, and have a `puppet-modules` directory in the parent also, that has the `crayfishx/db2` module and it's dependencies installed into it, eg:
+You will need to have the [db2-puppet-control-repo](https://github.com/jessereynolds/db2-puppet-control-repo) checked out as `puppet-control-repo` in the parent directory of this Vagrant env, and have a `puppet-modules` directory in the parent also, that has the `crayfishx/db2` module and it's dependencies installed into it, eg:
 
 ```
 /Users/jesse/src/puppet/projects/db2/puppet-modules
@@ -49,4 +49,6 @@ src/puppet/projects/db2
 └── vagrant_db2_oscar
     └── ...
 ```
+
+From here you can add any other modules you're testing or developing to the `puppet-modules` directory and iterate with ease.
 
