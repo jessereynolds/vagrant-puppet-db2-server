@@ -1,6 +1,6 @@
 # Vagrant environment for DB2 Server and Puppet Enterprise
 
-Creates a Puppet Enterprise server vm and an Agent vm that receives DB2 Server managed by Puppet.
+Creates a Puppet Enterprise server vm and an Agent vm that gets DB2 Server installed by Puppet.
 
 ## Pre-requisites
 
